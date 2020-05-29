@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class VirtualPetTest {
 
@@ -106,5 +107,84 @@ public class VirtualPetTest {
         testDog.walkies();
 
         assertEquals(115, testDog.getHappiness());
+    }
+
+    /*
+            VirtualPetShelter Test Methods
+    */
+    @Test
+    public void testShelterInitialization() {
+        VirtualPetShelter testShelter = new VirtualPetShelter();
+        testShelter.initializeShelter();
+
+        assertTrue(testShelter.contains("Daxeon"));
+    }
+    @Test
+    public void testWalkAll() {
+        VirtualPetShelter testShelter = new VirtualPetShelter();
+        testShelter.initializeShelter();
+        VirtualPet testDoggo = testShelter.getPet("Daxeon");
+        VirtualPet testRobDog = testShelter.getPet("Astro");
+
+        assertEquals(45, testDoggo.getHappiness());
+        assertEquals(50, testRobDog.getHappiness());
+
+        testShelter.allPetsWalked();
+
+        assertEquals(80, testDoggo.getHappiness());
+        assertEquals(-5, ((OrganicPet) testDoggo).getBathroom());
+        assertEquals(75, testRobDog.getHappiness());
+    }
+    @Test
+    public void testOilAll() {
+        VirtualPetShelter testShelter = new VirtualPetShelter();
+        testShelter.initializeShelter();
+        VirtualPet testDoggo = testShelter.getPet("Daxeon");
+        VirtualPet testRobDog = testShelter.getPet("Astro");
+
+        assertEquals(45, testDoggo.getHappiness());
+        assertEquals(50, testRobDog.getHappiness());
+        assertEquals(50, ((RoboticPet) testRobDog).getMaintenanceNeeded());
+
+        testShelter.allPetsOiled();
+
+        assertEquals(45, testDoggo.getHappiness());
+        assertEquals(60, testRobDog.getHappiness());
+        assertEquals(0, ((RoboticPet) testRobDog).getMaintenanceNeeded());
+    }
+    @Test
+    public void testCleanCages() {
+        VirtualPetShelter testShelter = new VirtualPetShelter();
+        testShelter.initializeShelter();
+        VirtualPet testDoggo = testShelter.getPet("Daxeon");
+        VirtualPet testRobDog = testShelter.getPet("Astro");
+
+        testShelter.cleanAllCages();
+
+        assertEquals(51, testDoggo.getHappiness());
+        assertEquals(0, ((OrganicDog) testDoggo).getCageFilth());
+        assertEquals(50, testRobDog.getHappiness());
+    }
+    @Test
+    public void testPlayWith() {
+        VirtualPetShelter testShelter = new VirtualPetShelter();
+        testShelter.initializeShelter();
+        VirtualPet testDoggo = testShelter.getPet("Daxeon");
+        VirtualPet testRobDog = testShelter.getPet("Astro");
+
+        testShelter.playWith(testDoggo);
+        testShelter.playWith(testRobDog);
+
+        assertEquals(95, testDoggo.getHappiness());
+        assertEquals(75, testRobDog.getHappiness());
+    }
+    @Test
+    public void testShelterTick() {
+        VirtualPetShelter testShelter = new VirtualPetShelter();
+        testShelter.initializeShelter();
+        VirtualPet testDoggo = testShelter.getPet("Daxeon");
+        VirtualPet testRobDog = testShelter.getPet("Astro");
+
+        testShelter.tick();
     }
 }

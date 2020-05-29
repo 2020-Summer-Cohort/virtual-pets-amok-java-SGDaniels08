@@ -17,6 +17,7 @@ public class OrganicDog extends OrganicPet implements Dog {
         bathroom = 0;
     }
     public void cleanCage() {
+        happiness += cageFilth/3;
         cageFilth = 0;
     }
 
@@ -41,6 +42,7 @@ public class OrganicDog extends OrganicPet implements Dog {
         happiness -= 5;
         hunger += 5;
         thirst += 10;
+        bathroom += 10;
 
         // If bathroom > 10, more unhappy, more chance to messCage()
     }

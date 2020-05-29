@@ -83,4 +83,33 @@ public class VirtualPetShelter {
             tickPet.tick();
         }
     }
+
+    public void initializeShelter() {
+        // Organic dogs
+        OrganicDog doggo1 = new OrganicDog("Rex", "A friendly-looking mutt", 50, 50, 50, 50, 50, 50);
+        OrganicDog doggo2 = new OrganicDog("Rover", "A happy Dalmatian",30, 40, 50, 60, 70,80);
+        OrganicDog doggo3 = new OrganicDog("Fido", "A sleepy old hound",10, 15,
+                35, 20, 45, 20);
+        OrganicDog doggo4 = new OrganicDog("Buggle", "A bouncy little Border Collie", 75,
+                40, 35, 70, 30, 50);
+        OrganicDog doggo5 = new OrganicDog("Daxeon", "A generally nervous English Shepherd",
+                45, 65, 60, 55, 45, 20);
+        // Robot dogs
+        RoboticDog robDog1 = new RoboticDog("Astro", "He's polished to a blinding sheen!",
+                50, 50, 50);
+        RoboticDog robDog2 = new RoboticDog("F1d0", "His coat is burnished steel",
+                45, 30, 85);
+        RoboticDog robDog3 = new RoboticDog("B3nd3r", "Its 40% iron!",
+                75, 15, 95);
+
+        // Add to shelter
+        shelterInhabitants.put(doggo1.getName(), doggo1);
+        shelterInhabitants.put(doggo2.getName(), doggo2);
+        shelterInhabitants.put(doggo3.getName(), doggo3);
+        shelterInhabitants.put(doggo4.getName(), doggo4);
+        shelterInhabitants.put(doggo5.getName(), doggo5);
+        shelterInhabitants.put(robDog1.getName(), robDog1);
+        shelterInhabitants.put(robDog2.getName(), robDog2);
+        shelterInhabitants.put(robDog3.getName(), robDog3);
+    }
 }

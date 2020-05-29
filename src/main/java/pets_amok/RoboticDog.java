@@ -14,6 +14,7 @@ public class RoboticDog extends RoboticPet implements Dog {
     @Override
     public void maintain() {
         maintenanceNeeded = 0;
+        happiness += 10;
     }
     // Override methods -- VirtualPet class
     @Override
