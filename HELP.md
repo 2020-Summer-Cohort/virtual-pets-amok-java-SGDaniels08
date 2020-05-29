@@ -10,10 +10,10 @@
 
 ## Setup
 
-- [ ] Go to GitHub Classroom and accept the [Virtual Pet Shelter assignment](https://classroom.github.com/a/jHmkK6D_) by clicking on the green 'Accept this assignment' button.
-- [ ] Follow the link to your repository and then click on the green 'Clone or download' button.  Copy the URL onto your computer's clipboard.
-- [ ] Launch IntelliJ and go to File -> New -> Project From Version Control and paste the above URL into the URL field.  Make sure the directory is where you want the project to be on your computer.
-- [ ] Create a README.md file in your project folder to describe what you've done with your project. No fancy formatting is necessary. Just separate paragraphs with an empty line. (If you'd like to learn more about Markdown formatting, check out the [Github Markdown Guide](https://guides.github.com/features/mastering-markdown/).)
+- [x] Go to GitHub Classroom and accept the [Virtual Pet Shelter assignment](https://classroom.github.com/a/jHmkK6D_) by clicking on the green 'Accept this assignment' button.
+- [x] Follow the link to your repository and then click on the green 'Clone or download' button.  Copy the URL onto your computer's clipboard.
+- [x] Launch IntelliJ and go to File -> New -> Project From Version Control and paste the above URL into the URL field.  Make sure the directory is where you want the project to be on your computer.
+- [x] Create a README.md file in your project folder to describe what you've done with your project. No fancy formatting is necessary. Just separate paragraphs with an empty line. (If you'd like to learn more about Markdown formatting, check out the [Github Markdown Guide](https://guides.github.com/features/mastering-markdown/).)
 
 ## Required Tasks
 
