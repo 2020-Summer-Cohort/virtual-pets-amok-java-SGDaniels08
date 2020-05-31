@@ -1,6 +1,7 @@
 package pets_amok;
 
 public class RoboticDog extends RoboticPet implements Dog {
+
     public RoboticDog(String name, String description, int happiness, int health, int maintenanceNeeded) {
         super(name, description, happiness, health, maintenanceNeeded);
     }

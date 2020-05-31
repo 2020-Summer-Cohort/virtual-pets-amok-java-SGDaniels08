@@ -172,10 +172,10 @@ public class VirtualPetTest {
         VirtualPet testDoggo = testShelter.getPet("Daxeon");
         VirtualPet testRobDog = testShelter.getPet("Astro");
 
-        testShelter.playWith(testDoggo);
-        testShelter.playWith(testRobDog);
+        testShelter.playWith(testDoggo.getName());
+        testShelter.playWith(testRobDog.getName());
 
-        assertEquals(95, testDoggo.getHappiness());
+        assertEquals(120, testDoggo.getHappiness());
         assertEquals(75, testRobDog.getHappiness());
     }
     @Test
@@ -187,7 +187,7 @@ public class VirtualPetTest {
 
         testShelter.tick();
     }
-    @Test
+/*    @Test
     public void testOrganicDogTickHealthChange() {
         VirtualPetShelter testShelter = new VirtualPetShelter();
         testShelter.initializeShelter();
@@ -202,5 +202,27 @@ public class VirtualPetTest {
 
         assertEquals(37, testTickHealth.getHealth());
         assertEquals(80, testTickHealth2.getHealth());
+    } */
+    @Test
+    public void testOrganicCatTick() {
+        OrganicCat testKitty = new OrganicCat("Arya", "A chubby floof", 80,
+                45,90,60,60);
+        testKitty.tick();
+
+        assertEquals(100, testKitty.getHunger());
+        assertEquals(65, testKitty.getThirst());
+        assertEquals(79, testKitty.getHappiness());
+    }
+    @Test
+    public void testOrganicCatUseLitterbox() {
+        OrganicCat testKitty = new OrganicCat("Freya", "She looks like a ghost!", 65,40,
+                95,60,65);
+        testKitty.useLitterbox();
+
+        assertEquals(0, testKitty.getBathroom());
+    }
+    @Test
+    public void testRoboticCatTick() {
+        RoboticCat testBotCat = new RoboticCat("0lg4", "Is she purring or is that an electrical problem?", 50, 50, 50);
     }
 }
