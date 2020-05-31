@@ -81,6 +81,11 @@ public class VirtualPetShelter {
         for (Map.Entry<String, VirtualPet> entry : shelterInhabitants.entrySet()) {
             VirtualPet tickPet = entry.getValue();
             tickPet.tick();
+
+            // If health reaches 0, pet dies / breaks down
+            if (tickPet.getHealth() <= 0) {
+                System.out.println("Oh no! " + tickPet.getName() + " has expired. Farewell, " + tickPet.getName() + ".");
+                shelterInhabitants.remove(tickPet.getName()); }
         }
     }
 

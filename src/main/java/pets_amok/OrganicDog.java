@@ -1,5 +1,7 @@
 package pets_amok;
 
+import java.util.Random;
+
 public class OrganicDog extends OrganicPet implements Dog {
 
     private int cageFilth;
@@ -25,7 +27,7 @@ public class OrganicDog extends OrganicPet implements Dog {
     @Override
     public void walkies() {
         happiness += 35;
-        bathroom -= 50;
+        bathroom = 0;
     }
     // Override methods -- OrganicPet class
     @Override
@@ -45,6 +47,16 @@ public class OrganicDog extends OrganicPet implements Dog {
         bathroom += 10;
 
         // If bathroom > 10, more unhappy, more chance to messCage()
+        if (bathroom > 10) {
+            Random randomNumber = new Random();
+            if (randomNumber.nextInt(100) < happiness) {
+                messCage();
+            }
+        }
+
+        // Adjust health proportional to other fields
+        health -= ((hunger/10) + (thirst/10) + (bathroom/10));
+        health += (happiness/10);
     }
     @Override
     public void play() {

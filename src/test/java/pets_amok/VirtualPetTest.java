@@ -24,7 +24,7 @@ public class VirtualPetTest {
                 50, 60, 75, 15);
         testDoggo.walkies();
 
-        assertEquals(25, testDoggo.getBathroom());
+        assertEquals(0, testDoggo.getBathroom());
         assertEquals(65, testDoggo.getHappiness());
     }
     @Test
@@ -132,7 +132,7 @@ public class VirtualPetTest {
         testShelter.allPetsWalked();
 
         assertEquals(80, testDoggo.getHappiness());
-        assertEquals(-5, ((OrganicPet) testDoggo).getBathroom());
+        assertEquals(0, ((OrganicPet) testDoggo).getBathroom());
         assertEquals(75, testRobDog.getHappiness());
     }
     @Test
@@ -186,5 +186,21 @@ public class VirtualPetTest {
         VirtualPet testRobDog = testShelter.getPet("Astro");
 
         testShelter.tick();
+    }
+    @Test
+    public void testOrganicDogTickHealthChange() {
+        VirtualPetShelter testShelter = new VirtualPetShelter();
+        testShelter.initializeShelter();
+        OrganicDog testTickHealth = new OrganicDog("Test this Mess", "Looks like he might make a mess",
+                50, 50, 50, 50, 50, 50);
+        OrganicDog testTickHealth2 = new OrganicDog("Test another", "How healthy is he?",
+                75, 86, 44, 27, 56, 20);
+        testShelter.intakePet(testTickHealth);
+        testShelter.intakePet(testTickHealth2);
+
+        testShelter.tick();
+
+        assertEquals(37, testTickHealth.getHealth());
+        assertEquals(80, testTickHealth2.getHealth());
     }
 }
