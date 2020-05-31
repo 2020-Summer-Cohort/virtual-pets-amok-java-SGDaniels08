@@ -60,7 +60,7 @@ public class OrganicDog extends OrganicPet implements Dog {
     }
     @Override
     public void play() {
-        happiness += 50;
+        happiness += 75;
     }
 
     // Getter

@@ -51,7 +51,8 @@ public class VirtualPetShelter {
             }
         }
     }
-    public void playWith(VirtualPet playPet) {
+    public void playWith(String playPetName) {
+        VirtualPet playPet = getPet(playPetName);
         playPet.play();
     }
     public void cleanAllCages() {
