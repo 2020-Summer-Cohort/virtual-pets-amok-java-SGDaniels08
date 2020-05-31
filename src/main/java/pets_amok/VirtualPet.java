@@ -6,6 +6,7 @@ public abstract class VirtualPet {
     private String description;
     protected int happiness;
     protected int health;
+    private boolean living = true;
 
     public VirtualPet (String name, String description, int happiness, int health) {
         this.name = name;
@@ -16,6 +17,9 @@ public abstract class VirtualPet {
 
     public abstract void tick();
     public abstract void play();
+    public void die() {
+        living = false;
+    }
 
     // Getters
     public String getName() {
@@ -27,7 +31,8 @@ public abstract class VirtualPet {
     public int getHappiness() {
         return happiness;
     }
-    public int getHealth() {
-        return health;
+    public int getHealth() { return health; }
+    public boolean isAlive() {
+        return living;
     }
 }

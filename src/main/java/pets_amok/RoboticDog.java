@@ -22,6 +22,9 @@ public class RoboticDog extends RoboticPet implements Dog {
     public void tick() {
         happiness -= 1;
         maintenanceNeeded += 5;
+
+        //Conditions for death
+        if (health <= 0 || maintenanceNeeded >= 100) { die(); }
     }
     @Override
     public void play() {

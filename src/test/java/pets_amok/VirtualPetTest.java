@@ -225,4 +225,15 @@ public class VirtualPetTest {
     public void testRoboticCatTick() {
         RoboticCat testBotCat = new RoboticCat("0lg4", "Is she purring or is that an electrical problem?", 50, 50, 50);
     }
+    @Test
+    public void testAnimalDeath() {
+        VirtualPetShelter testShelter = new VirtualPetShelter();
+        testShelter.initializeShelter();
+        VirtualPet testDoggo = testShelter.getPet("Fido");
+
+        testShelter.tick();
+        testShelter.tick();
+
+        assertEquals(0, testDoggo.getHealth());
+    }
 }

@@ -20,6 +20,8 @@ public class RoboticCat extends RoboticPet implements Cat {
     @Override
     public void tick() {
         maintenanceNeeded += 5;
+        // Conditions for death
+        if (health <= 0 || maintenanceNeeded >= 100) { die(); }
     }
     @Override
     public void play() {

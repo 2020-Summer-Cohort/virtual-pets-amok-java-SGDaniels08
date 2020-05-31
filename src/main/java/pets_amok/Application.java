@@ -1,5 +1,6 @@
 package pets_amok;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class Application {
         Scanner input = new Scanner(System.in);
 
         VirtualPetShelter shelterAmok = new VirtualPetShelter();
-        shelterAmok.initializeShelter();    // Add 5 OrganicDogs and 3 RobotDogs
+        shelterAmok.initializeShelter();    // Add 5 OrganicDogs, 3 RobotDogs, 3 OrganicCats, and 2 RoboticCats
 
         int choice;
         boolean keepSheltering = true;
@@ -19,8 +20,8 @@ public class Application {
             System.out.println("We have dogs and cats, robotic and organic");
             System.out.println("for you to play with, donate, or adopt!");
 
-            displayOrganicPets(shelterAmok);
-            displayRoboticPets(shelterAmok);
+            displayAllOrganicPets(shelterAmok);
+            displayAllRoboticPets(shelterAmok);
 
             System.out.println("What would you like to do?");
             displayShelterMenu();
@@ -72,6 +73,10 @@ public class Application {
             }
 
             shelterAmok.tick();
+
+            ArrayList<String> deceased = new ArrayList<>();
+            deceased = shelterAmok.findDeceased();
+            shelterAmok.removeDeceased(deceased);
             if (shelterAmok.isEmpty()) { keepSheltering = false; }
         }
 
@@ -116,8 +121,12 @@ public class Application {
             } else if (choice == 2) {
                 animal = new RoboticDog(name, description, happiness, health, 50);
                 return animal;
-//            } else if (choice == 3) {
-//            } else if (choice == 4) {
+            } else if (choice == 3) {
+                animal = new OrganicCat(name, description, happiness, health,50,50,0);
+                return animal;
+            } else if (choice == 4) {
+                animal = new RoboticCat(name, description, happiness, health, 50);
+                return animal;
             } else {
                 System.out.println("Invalid choice, please try again: ");
                 continue;
@@ -137,35 +146,55 @@ public class Application {
         System.out.print("Choose --> ");
     }
 
-    public static void displayOrganicPets(VirtualPetShelter anyShelter) {
+    public static void displayAllOrganicPets(VirtualPetShelter anyShelter) {
         Map<String, VirtualPet> shelter = anyShelter.retrieveAllPets();
 
         System.out.println("ORGANIC PETS");
-        System.out.println("NAME\t\tHunger\tThirst\tBathroom\tHappiness");
+        System.out.println("NAME\t\t\tSpecies\tHunger\tThirst\tBathroom\tHappiness\tHealth\t\tCage Filth (organic dogs only)");
 
         for (Map.Entry<String, VirtualPet> entry : shelter.entrySet()) {
             VirtualPet petToShow = entry.getValue();
-            if (petToShow instanceof OrganicPet) {
+
+            if (petToShow instanceof OrganicDog) {
                 System.out.print(petToShow.getName() + "\t\t");
-                System.out.print(((OrganicPet) petToShow).getHunger() + "\t\t");
-                System.out.print(((OrganicPet) petToShow).getThirst() + "\t\t");
-                System.out.print(((OrganicPet) petToShow).getBathroom() + "\t\t");
-                System.out.print(((OrganicPet) petToShow).getHealth() + "\n");
+                System.out.print("Dog\t\t");
+                System.out.print(((OrganicDog) petToShow).getHunger() + "\t\t");
+                System.out.print(((OrganicDog) petToShow).getThirst() + "\t\t");
+                System.out.print(((OrganicDog) petToShow).getBathroom() + "\t\t");
+                System.out.print(((OrganicDog) petToShow).getHappiness() + "\t\t");
+                System.out.print(((OrganicDog) petToShow).getHealth() + "\t\t");
+                System.out.print(((OrganicDog) petToShow).getCageFilth() + "\n");
+            } else if (petToShow instanceof OrganicCat) {
+                System.out.print(petToShow.getName() + "\t\t");
+                System.out.print("Cat\t\t");
+                System.out.print(((OrganicCat) petToShow).getHunger() + "\t\t");
+                System.out.print(((OrganicCat) petToShow).getThirst() + "\t\t");
+                System.out.print(((OrganicCat) petToShow).getBathroom() + "\t\t");
+                System.out.print(((OrganicCat) petToShow).getHappiness() + "\t\t");
+                System.out.print(((OrganicCat) petToShow).getHealth() + "\n");
             }
         }
     }
-    public static void displayRoboticPets(VirtualPetShelter anyShelter) {
+    public static void displayAllRoboticPets(VirtualPetShelter anyShelter) {
         Map<String, VirtualPet> shelter = anyShelter.retrieveAllPets();
 
         System.out.println("ROBOTIC PETS");
-        System.out.println("NAME\t\tMaintenanceNeeded\tHappiness");
+        System.out.println("NAME\t\t\tSpecies\t\tHappiness\tHealth\tMaintenance Needed");
 
         for (Map.Entry<String, VirtualPet> entry : shelter.entrySet()) {
             VirtualPet petToShow = entry.getValue();
-            if (petToShow instanceof RoboticPet) {
+            if (petToShow instanceof RoboticDog) {
                 System.out.print(petToShow.getName() + "\t\t");
-                System.out.print(((RoboticPet) petToShow).getMaintenanceNeeded() + "\t\t");
-                System.out.print(((RoboticPet) petToShow).getHealth() + "\n");
+                System.out.print("Dog\t\t");
+                System.out.print(petToShow.getHappiness() + "\t\t");
+                System.out.print(petToShow.getHealth() + "\t\t");
+                System.out.print(((RoboticDog) petToShow).getMaintenanceNeeded() + "\n");
+            } else if (petToShow instanceof RoboticCat) {
+                System.out.print(petToShow.getName() + "\t\t");
+                System.out.print("Cat\t\t");
+                System.out.print(petToShow.getHappiness() + "\t\t");
+                System.out.print(petToShow.getHealth() + "\t\t");
+                System.out.print(((RoboticCat) petToShow).getMaintenanceNeeded() + "\n");
             }
         }
     }

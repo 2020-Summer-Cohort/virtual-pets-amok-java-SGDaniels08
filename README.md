@@ -8,8 +8,11 @@ Commit 3: Added health functionality to tick() methods
 
 Commit 4: Game loop and basic functionality added
 
-Commit 5: (new branch) Added OrganicCat and RoboticCat
+Commit 5: (branch tryCatInterface) Added OrganicCat and RoboticCat
+
+Commit 6: (branch tryCatInterface) Implemented death, removal from shelter
 
 --> Further refine health -- high filth reduces health
 --> Take a look at testOrganicDogTickHealthChange() <-- testing w/ random
+--> Test RoboticCat
 --> Fix display functions (new Cat classes, formatting)

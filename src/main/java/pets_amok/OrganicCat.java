@@ -32,12 +32,15 @@ public class OrganicCat extends OrganicPet implements Cat {
         thirst += 5;
         bathroom += 10;
 
+        // Use Litterbox
+        if (randomNumber.nextInt(75) < bathroom ) { useLitterbox(); }
+
         // Adjust health proportional to other fields
         health -= ((hunger/10) + (thirst/10) + (bathroom/10));
         health += (happiness/10);
 
-        // Use Litterbox
-        if (randomNumber.nextInt(75) < bathroom ) { useLitterbox(); }
+        // Conditions for death
+        if (health <= 0) { die(); }
     }
     @Override
     public void play() {

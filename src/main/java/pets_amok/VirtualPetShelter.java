@@ -1,5 +1,6 @@
 package pets_amok;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,6 +78,22 @@ public class VirtualPetShelter {
     public boolean isEmpty() {
         return shelterInhabitants.isEmpty();
     }
+    public ArrayList<String> findDeceased() {
+        ArrayList<String> deceased = new ArrayList<>();
+        String name;
+
+        for (Map.Entry<String, VirtualPet> entry : shelterInhabitants.entrySet()) {
+            VirtualPet testDead = entry.getValue();
+            if (!testDead.isAlive()) {
+                name = testDead.getName();
+                deceased.add(name);
+            }
+        }
+        return deceased;
+    }
+    public void removeDeceased(ArrayList<String> deceased) {
+        for (String name : deceased) { shelterInhabitants.remove(name); }
+    }
 
     public void tick() {
         for (Map.Entry<String, VirtualPet> entry : shelterInhabitants.entrySet()) {
@@ -84,13 +101,16 @@ public class VirtualPetShelter {
             tickPet.tick();
 
             // If health reaches 0, pet dies / breaks down
-            if (tickPet.getHealth() <= 0) {
-                System.out.println("Oh no! " + tickPet.getName() + " has expired. Farewell, " + tickPet.getName() + ".");
-                shelterInhabitants.remove(tickPet.getName()); }
+            if (tickPet.isAlive() == false) {
+                String deceased = tickPet.getName();
+                System.out.println("Oh no! " + deceased + " has expired. Farewell, " + deceased + ".");
+             }
         }
     }
 
     public void initializeShelter() {
+        // Add 5 OrganicDogs, 3 RobotDogs, 3 OrganicCats, and 2 RoboticCats
+
         // Organic dogs
         OrganicDog doggo1 = new OrganicDog("Rex", "A friendly-looking mutt", 50, 50, 50, 50, 50, 50);
         OrganicDog doggo2 = new OrganicDog("Rover", "A happy Dalmatian",30, 40, 50, 60, 70,80);
@@ -100,13 +120,25 @@ public class VirtualPetShelter {
                 40, 35, 70, 30, 50);
         OrganicDog doggo5 = new OrganicDog("Daxeon", "A generally nervous English Shepherd",
                 45, 65, 60, 55, 45, 20);
-        // Robot dogs
+        // Robotic dogs
         RoboticDog robDog1 = new RoboticDog("Astro", "He's polished to a blinding sheen!",
                 50, 50, 50);
         RoboticDog robDog2 = new RoboticDog("F1d0", "His coat is burnished steel",
                 45, 30, 85);
         RoboticDog robDog3 = new RoboticDog("B3nd3r", "Its 40% iron!",
                 75, 15, 95);
+        // Organic cats
+        OrganicCat testKitty1 = new OrganicCat("Arya", "A chubby floof", 80,
+                45,90,60,60);
+        OrganicCat testKitty2 = new OrganicCat("Freya", "She looks like a ghost!", 65,40,
+                95,60,65);
+        OrganicCat testKitty3 = new OrganicCat("Shabadu", "Super-cute!",
+                75, 65, 55, 40, 35);
+        // Robotic cats
+        RoboticCat botCat1 = new RoboticCat("0lg4", "Is she purring or is that an electrical problem?",
+                50, 50, 50);
+        RoboticCat botCat2 = new RoboticCat("Kit-10", "Unnervingly humanoid",
+                50, 50, 68);
 
         // Add to shelter
         shelterInhabitants.put(doggo1.getName(), doggo1);
@@ -117,5 +149,10 @@ public class VirtualPetShelter {
         shelterInhabitants.put(robDog1.getName(), robDog1);
         shelterInhabitants.put(robDog2.getName(), robDog2);
         shelterInhabitants.put(robDog3.getName(), robDog3);
+        shelterInhabitants.put(testKitty1.getName(), testKitty1);
+        shelterInhabitants.put(testKitty2.getName(), testKitty2);
+        shelterInhabitants.put(testKitty3.getName(), testKitty3);
+        shelterInhabitants.put(botCat1.getName(), botCat1);
+        shelterInhabitants.put(botCat2.getName(), botCat2);
     }
 }

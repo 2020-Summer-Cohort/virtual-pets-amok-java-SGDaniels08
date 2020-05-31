@@ -57,6 +57,9 @@ public class OrganicDog extends OrganicPet implements Dog {
         // Adjust health proportional to other fields
         health -= ((hunger/10) + (thirst/10) + (bathroom/10));
         health += (happiness/10);
+
+        // Conditions for death
+        if (health <= 0) { die(); }
     }
     @Override
     public void play() {
