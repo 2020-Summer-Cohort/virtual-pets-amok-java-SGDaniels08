@@ -10,7 +10,7 @@ public class Application {
         Scanner input = new Scanner(System.in);
 
         VirtualPetShelter shelterAmok = new VirtualPetShelter();
-        shelterAmok.initializeShelter();    // Add 5 OrganicDogs, 3 RobotDogs, 3 OrganicCats, and 2 RoboticCats
+        shelterAmok.initializeSmallShelter();    // Add 3 OrganicDogs, 1 RobotDogs, 2 OrganicCats, and 2 RoboticCats
 
         int choice;
         boolean keepSheltering = true;
@@ -33,7 +33,8 @@ public class Application {
             else if (choice == 2) { shelterAmok.allPetsDrink(); }
             else if (choice == 3) { shelterAmok.cleanAllCages(); }
             else if (choice == 4) { shelterAmok.allPetsOiled(); }
-            else if (choice == 5) {
+            else if (choice == 5) { shelterAmok.allPetsWalked(); }
+            else if (choice == 6) {
                 // Play with a Pet
                 String petName;
                 System.out.println("Which pet would you like to play with?");
@@ -47,7 +48,7 @@ public class Application {
                     continue;
                 }
             }
-            else if (choice == 6) {
+            else if (choice == 7) {
                 // Adopt out a pet
                 String petName;
                 System.out.println("Which pet would you like to adopt?");
@@ -62,7 +63,7 @@ public class Application {
                     continue;
                 }
             }
-            else if (choice == 7) {
+            else if (choice == 8) {
                 // Accept a new pet
                 VirtualPet newPet = intakeProcess();
                 shelterAmok.intakePet(newPet);
@@ -136,12 +137,13 @@ public class Application {
 
     public static void displayShelterMenu() {
         System.out.println("1 : Feed all organic pets");
-        System.out.println("2 : Water all organic dogs");
+        System.out.println("2 : Water all organic pets");
         System.out.println("3 : Clean all organic dog cages");
         System.out.println("4 : Oil and maintain all robotic pets");
-        System.out.println("5 : Play with one pet (choose one)");
-        System.out.println("6 : Adopt a pet -- take one home today!");
-        System.out.println("7 : Donate a pet -- add it to the shelter!");
+        System.out.println("5 : Take all dogs for a walk");
+        System.out.println("6 : Play with one pet (choose one)");
+        System.out.println("7 : Adopt a pet -- take one home today!");
+        System.out.println("8 : Donate a pet -- add it to the shelter!");
         System.out.println("0 : Leave");
         System.out.print("Choose --> ");
     }
@@ -150,27 +152,27 @@ public class Application {
         Map<String, VirtualPet> shelter = anyShelter.retrieveAllPets();
 
         System.out.println("ORGANIC PETS");
-        System.out.println("NAME\t\t\tSpecies\tHunger\tThirst\tBathroom\tHappiness\tHealth\t\tCage Filth (organic dogs only)");
+        System.out.println("NAME\t\tSpecies\tHunger\tThirst\tBathroom\tHappiness\tHealth\t\tCage Filth (organic dogs only)");
 
         for (Map.Entry<String, VirtualPet> entry : shelter.entrySet()) {
             VirtualPet petToShow = entry.getValue();
 
             if (petToShow instanceof OrganicDog) {
                 System.out.print(petToShow.getName() + "\t\t");
-                System.out.print("Dog\t\t");
+                System.out.print("Dog\t\t\t");
                 System.out.print(((OrganicDog) petToShow).getHunger() + "\t\t");
                 System.out.print(((OrganicDog) petToShow).getThirst() + "\t\t");
                 System.out.print(((OrganicDog) petToShow).getBathroom() + "\t\t");
-                System.out.print(((OrganicDog) petToShow).getHappiness() + "\t\t");
-                System.out.print(((OrganicDog) petToShow).getHealth() + "\t\t");
+                System.out.print(((OrganicDog) petToShow).getHappiness() + "\t\t\t");
+                System.out.print(((OrganicDog) petToShow).getHealth() + "\t\t\t\t");
                 System.out.print(((OrganicDog) petToShow).getCageFilth() + "\n");
             } else if (petToShow instanceof OrganicCat) {
                 System.out.print(petToShow.getName() + "\t\t");
-                System.out.print("Cat\t\t");
+                System.out.print("Cat\t\t\t");
                 System.out.print(((OrganicCat) petToShow).getHunger() + "\t\t");
                 System.out.print(((OrganicCat) petToShow).getThirst() + "\t\t");
                 System.out.print(((OrganicCat) petToShow).getBathroom() + "\t\t");
-                System.out.print(((OrganicCat) petToShow).getHappiness() + "\t\t");
+                System.out.print(((OrganicCat) petToShow).getHappiness() + "\t\t\t\t");
                 System.out.print(((OrganicCat) petToShow).getHealth() + "\n");
             }
         }
@@ -179,19 +181,19 @@ public class Application {
         Map<String, VirtualPet> shelter = anyShelter.retrieveAllPets();
 
         System.out.println("ROBOTIC PETS");
-        System.out.println("NAME\t\t\tSpecies\t\tHappiness\tHealth\tMaintenance Needed");
+        System.out.println("NAME\t\tSpecies\t\tHappiness\tHealth\tMaintenance Needed");
 
         for (Map.Entry<String, VirtualPet> entry : shelter.entrySet()) {
             VirtualPet petToShow = entry.getValue();
             if (petToShow instanceof RoboticDog) {
                 System.out.print(petToShow.getName() + "\t\t");
-                System.out.print("Dog\t\t");
+                System.out.print("Dog\t\t\t\t");
                 System.out.print(petToShow.getHappiness() + "\t\t");
                 System.out.print(petToShow.getHealth() + "\t\t");
                 System.out.print(((RoboticDog) petToShow).getMaintenanceNeeded() + "\n");
             } else if (petToShow instanceof RoboticCat) {
                 System.out.print(petToShow.getName() + "\t\t");
-                System.out.print("Cat\t\t");
+                System.out.print("Cat\t\t\t\t");
                 System.out.print(petToShow.getHappiness() + "\t\t");
                 System.out.print(petToShow.getHealth() + "\t\t");
                 System.out.print(((RoboticCat) petToShow).getMaintenanceNeeded() + "\n");

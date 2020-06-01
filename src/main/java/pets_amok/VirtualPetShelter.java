@@ -155,4 +155,37 @@ public class VirtualPetShelter {
         shelterInhabitants.put(botCat1.getName(), botCat1);
         shelterInhabitants.put(botCat2.getName(), botCat2);
     }
+
+    public void initializeSmallShelter() {
+        // Add 3 OrganicDogs, 1 RobotDogs, 2 OrganicCats, and 2 RoboticCats
+
+        // Organic dogs
+        OrganicDog doggo1 = new OrganicDog("Rex", "A friendly-looking mutt", 50, 50, 50, 50, 50, 50);
+        OrganicDog doggo2 = new OrganicDog("Rover", "A happy Dalmatian",30, 40, 50, 60, 70,80);
+        OrganicDog doggo3 = new OrganicDog("Fido", "A sleepy old hound",10, 15,
+                35, 20, 45, 20);
+        // Robotic dogs
+        RoboticDog robDog1 = new RoboticDog("B3nd3r", "Its 40% iron!",
+                75, 15, 95);
+        // Organic cats
+        OrganicCat testKitty1 = new OrganicCat("Jinx", "A slender fuzzo", 80,
+                45,90,60,60);
+        OrganicCat testKitty2 = new OrganicCat("Shabadu", "Super-cute!",
+                75, 65, 55, 40, 35);
+        // Robotic cats
+        RoboticCat botCat1 = new RoboticCat("0lg4", "Is she purring or is that an electrical problem?",
+                50, 50, 50);
+        RoboticCat botCat2 = new RoboticCat("Kit-10", "Unnervingly humanoid",
+                50, 50, 68);
+
+        // Add to shelter
+        shelterInhabitants.put(doggo1.getName(), doggo1);
+        shelterInhabitants.put(doggo2.getName(), doggo2);
+        shelterInhabitants.put(doggo3.getName(), doggo3);
+        shelterInhabitants.put(robDog1.getName(), robDog1);
+        shelterInhabitants.put(testKitty1.getName(), testKitty1);
+        shelterInhabitants.put(testKitty2.getName(), testKitty2);
+        shelterInhabitants.put(botCat1.getName(), botCat1);
+        shelterInhabitants.put(botCat2.getName(), botCat2);
+    }
 }
